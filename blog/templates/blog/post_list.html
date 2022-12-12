@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block style %}
+<link href="{% static 'css/my_styles.css' %}" rel="stylesheet" />
+{% endblock %}
+
+{% block title %}
+Blog 목록
+{% endblock %}
+
+{% block main_area %}
+<section class="container">
+    <h2>Blog</h2>
+    <br>
+    {% for p in post_list %}
+        <h2> <a href="{{p.getabsolute_url}}">{{p.title}}</a></h2>
+        <h4>{{p.created_at}}</h4> 
+        <p>{{p.content}}</p>
+    {% endfor %}
+</section>
+{% endblock %}
