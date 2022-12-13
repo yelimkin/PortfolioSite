@@ -20,7 +20,13 @@ Blog 목록
             <!-- Featured blog post-->
             {% for p in post_list %}
             <div class="card mb-4">
-                <a href="#!"><img class="card-img-top" src="https://picsum.photos/seed/{{p.id}}/700/500" alt="..." /></a>
+                <a href="#!">
+                    {% if p.head_image %}
+                    <img class="card-img-top" src="{{ p.head_image.url }}" alt="{{ p }} head image" />
+                    {% else %}
+                    <img class="card-img-top" src="https://picsum.photos/seed/{{p.id}}/700/500" alt="random_image" />
+                    {% endif %}
+                </a>
                 <div class="card-body">
                     
                     <div class="small text-muted">{{p.created_at}}</div>
