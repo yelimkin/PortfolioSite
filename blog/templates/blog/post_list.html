@@ -38,6 +38,11 @@ Blog 목록
                         <p class="card-text">{{ p.content | truncatewords:45 }}</p>
                         <a class="btn btn-primary" href="{{ p.get_absolute_url }}">Read more →</a>
                     </div>
+
+                    <div class="card-footer text-muted">
+                        Posted on {{ p.created_at }} by
+                        <a href="#">{{ p.author | upper }}</a>
+                    </div>
                 </div>
                 {% endfor %}
             {% else %}

@@ -22,6 +22,10 @@
                 <header class="mb-4">
                     <!-- Post title-->
                     <h1 class="fw-bolder mb-1">{{ post.title }}</h1>
+                    <p class="lead">
+                        by
+                        <a href="#">{{ post.author | upper }}</a>
+                    </p>
                     {% if p.hook_text %}
                     <h5 class="text_muted">{{ post.hook_text }}</h5>
                     {% endif %}
