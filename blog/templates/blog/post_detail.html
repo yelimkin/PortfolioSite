@@ -3,6 +3,7 @@
 
 {% block style %}
 <link href="{% static 'css/my_styles.css' %}" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
 {% endblock %}
 
 {% block title %}
@@ -39,6 +40,22 @@
                 <div class="mb-5">
                     <p class="fs-5 mb-4">{{ post.content }}</p>
                 </div>
+
+                {% if post.file_upload %}
+                <a href="{{ post.file_upload.url }}" class="btn btn-outline-dark" role="button" download>
+                    Download : 
+                    {% if post.get_file_ext == 'csv' %}
+                    <i class="bi bi-filetype-csv"></i>
+                    {% elif post.get_file_ext == 'xlsx' or post.get_file_ext == 'xls' %}
+                    <i class="bi bi-filetype-xlsx"></i>
+                    {% elif post.get_file_ext == 'docx' or post.get_file_ext == 'doc' %}
+                    <i class="bi bi-filetype-docx"></i>
+                    {% elif post.get_file_ext == 'pdf' %}
+                    <i class="bi bi-filetype-pdf"></i>
+                    {% endif %}
+                    {{ post.get_file_name }}
+                </a>
+                {% endif %}
             </article>
 
             <!-- Comments section -->
