@@ -11,7 +11,7 @@ class Post(models.Model):
     file_upload = models.FileField(upload_to='blog/files/%Y/%m/%d', blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    author = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
 
     def __str__(self):
         return f'[{self.pk} -- {self.title}] :: {self.author}'
