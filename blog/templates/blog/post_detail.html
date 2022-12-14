@@ -22,6 +22,11 @@
                 <header class="mb-4">
                     <!-- Post title-->
                     <h1 class="fw-bolder mb-1">{{ post.title }}</h1>
+                    {% if post.category %}
+                    <span class="badge bg-secondary float-end">{{ post.category }}</span>
+                    {% else %}
+                    <span class="badge bg-secondary float-end">no category</span>
+                    {% endif %}
                     <p class="lead">
                         by
                         <a href="#">{{ post.author | upper }}</a>
