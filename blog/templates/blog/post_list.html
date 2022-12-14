@@ -13,10 +13,11 @@ Blog 목록
 
 <!-- Page content-->
 <section class="container">
-    <h2>Blog</h2>
     <div class="row">
         <!-- Blog entries-->
         <div class="col-lg-8">
+            <h1>Blog {% if category %}<span class="badge bg-secondary">{{ category }}</span>{% endif %}</h1>
+
             <!-- Featured blog post-->
             {% if post_list.exists %}
                 {% for p in post_list %}
