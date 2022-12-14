@@ -16,7 +16,10 @@ Blog 목록
     <div class="row">
         <!-- Blog entries-->
         <div class="col-lg-8">
-            <h1>Blog {% if category %}<span class="badge bg-secondary">{{ category }}</span>{% endif %}</h1>
+            <h1>Blog 
+                {% if category %}<span class="badge bg-secondary">{{ category }}</span>{% endif %}
+                {% if tag %}<span class="badge bg-secondary"><i class="fas fa-tags" aria-hidden="true"></i> {{ tag }} ({{ tag.post_set.count }})</span>{% endif %}
+            </h1>
 
             <!-- Featured blog post-->
             {% if post_list.exists %}
@@ -43,10 +46,10 @@ Blog 목록
                         <p class="card-text">{{ p.content | truncatewords:45 }}</p>
 
                         {% if p.tags.exists %}
-                            <i class="bi bi-tag-fill"></i>
+                            <i class="fas fa-tags" aria-hidden="true"></i>
                             {% for tag in p.tags.iterator %}
-                            <a href="{{ tag.get_absolute_url }}">
-                                <span>{{ tag }}</span>
+                            <a href="{{ tag.get_absolute_url }}" style="text-decoration: none;">
+                                <span class="badge bg-secondary">{{ tag }}</span>
                             </a>
                             {% endfor %}
                             <br>

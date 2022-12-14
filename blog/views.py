@@ -1,5 +1,5 @@
 from django.views.generic import ListView, DetailView
-from .models import Post, Category
+from .models import Post, Category, Tag
 from django.shortcuts import render
 
 # Create your views here.
@@ -47,5 +47,22 @@ def category_page(request, slug):
             'no_category_post_count' : Post.objects.filter(category=None).count(),
             # 페이지 타이틀 옆에 카테고리 이름
             'category' : category,
+        }
+    )
+
+def tag_page(request, slug):
+    tag = Tag.objects.get(slug=slug)
+    post_list = tag.post_set.all()
+    print(post_list)
+    # 선택한 태그 리스트 -> bootstrap 태그인 리스트 <QuerySet [<Post: [14 -- 태그_테스트1] :: bbb>, <Post: [16 -- 태그_테스트3] :: aaa>]>
+
+    return render(
+        request,
+        'blog/post_list.html',
+        {
+            'post_list' : post_list,
+            'tag' : tag,
+            'categories' : Category.objects.all(),
+            'no_category_post_count' : Post.objects.filter(category=None).count(),
         }
     )

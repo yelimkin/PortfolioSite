@@ -53,10 +53,10 @@
                     <p class="fs-5 mb-4">{{ post.content }}</p>
 
                     {% if post.tags.exists %}
-                        <i class="bi bi-tag-fill"></i>
+                        <i class="fas fa-tags" aria-hidden="true"></i>
                         {% for tag in post.tags.iterator %}
-                        <a href="{{ tag.get_absolute_url }}">
-                            <span>
+                        <a href="{{ tag.get_absolute_url }}" style="text-decoration: none;">
+                            <span class="badge bg-secondary">
                                 {{ tag }}
                             </span>
                         </a>
