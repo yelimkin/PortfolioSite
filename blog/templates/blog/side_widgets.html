@@ -14,7 +14,7 @@
     <div class="card mb-4">
         <div class="card-header">Categories</div>
         <div class="card-body">
-            <ul class="list-unstyled mb-0">
+            <ul class="mb-0">
                 {% for category in categories %}
                 <li>
                     <a href="{{ category.get_absolute_url }}">{{ category }} ({{ category.post_set.count }})</a>

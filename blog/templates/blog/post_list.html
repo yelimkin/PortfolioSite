@@ -29,7 +29,7 @@ Blog 목록
                         {% endif %}
                     </a>
                     <div class="card-body">
-                    
+                        <p class="text-end" style="margin: 0; padding: 0;"><span class="badge bg-secondary float-right">{{ p.category }}</span></p>
                         <div class="small text-muted">{{ p.created_at }}</div>
                         <h2 class="card-title">{{ p.title }}</h2>
                         {% if p.hook_text %}
