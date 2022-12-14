@@ -41,6 +41,18 @@ Blog 목록
                         <h5 class="text-muted">{{ p.hook_text }}</h5>
                         {% endif %}
                         <p class="card-text">{{ p.content | truncatewords:45 }}</p>
+
+                        {% if p.tags.exists %}
+                            <i class="bi bi-tag-fill"></i>
+                            {% for tag in p.tags.iterator %}
+                            <a href="{{ tag.get_absolute_url }}">
+                                <span>{{ tag }}</span>
+                            </a>
+                            {% endfor %}
+                            <br>
+                            <br>
+                        {% endif %}
+
                         <a class="btn btn-primary" href="{{ p.get_absolute_url }}">Read more →</a>
                     </div>
 
