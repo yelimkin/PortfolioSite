@@ -18,8 +18,8 @@ Blog 목록
         <div class="col-lg-8">
             {% if user.is_authenticated %}
                 {% if user.is_superuser or user.is_staff %}
-                <a href="/blog/create_post/" class="btn btn-info btn-sm float-right" role="button">
-                    <i class="fas fa-pen">&nbsp;&nbsp;New Post</i>
+                <a href="/blog/create_post/" class="btn btn-warning btn-sm float-end" role="button">
+                    <i class="fas fa-pen"></i>&nbsp;&nbsp;New Post
                 </a>
                 {% endif %}    
             {% endif %}

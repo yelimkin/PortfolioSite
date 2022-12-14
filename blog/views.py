@@ -29,10 +29,7 @@ class PostDetail(DetailView):
 
 class PostCreate(CreateView, LoginRequiredMixin):
     model = Post
-    fields = ['title', 'hook_text', 'content', 'head_image', 'file_upload', 'category', 'tags']
-
-    def test_func(self):
-        return self.request.user.is_superuser or self.request.user.is_staff
+    fields = ['title', 'hook_text', 'content', 'head_image', 'file_upload', 'category']
 
     def form_valid(self, form):
         current_user = self.request.user
@@ -45,7 +42,7 @@ class PostCreate(CreateView, LoginRequiredMixin):
 
 def category_page(request, slug):
     if slug == 'no_category':
-        category = '미분류'
+        category = 'no category'
         post_list = Post.objects.filter(category=None)
     else:
         # 인자로 받은 slug와 동일한 slug를 갖는 카테고리를 
