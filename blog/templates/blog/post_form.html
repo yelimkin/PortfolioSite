@@ -7,15 +7,24 @@
 
 {% block head_title %}Create Post - Blog{% endblock %}
 
+{% load crispy_forms_tags %}
+
 {% block main_area %}
+<section class="container">
     <br>
     <h1 style="margin-top: 100px;">Create New Post</h1>
     <hr>
     <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
-        <table>
-            {{ form }}
-        </table>
+            {{ form | crispy }}
+            
+        <div>
+            <label for="id_tag_str">Tags</label>
+            <input type="text" name="tags_str" id="id_tags_str" class="textInput form-control">
+        </div>
         <button type="submit" class="btn btn-primary float-right">Submit</button>
+
     </form>
+</section>
+    
 {% endblock %}

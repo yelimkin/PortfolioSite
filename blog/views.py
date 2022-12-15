@@ -3,6 +3,8 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Post, Category, Tag
 from django.shortcuts import render
 from django.core.exceptions import PermissionDenied
+from .forms import PostForm
+from django.utils.text import slugify
 
 # Create your views here.
 class PostList(ListView):
@@ -30,15 +32,37 @@ class PostDetail(DetailView):
 
 class PostCreate(CreateView, LoginRequiredMixin):
     model = Post
-    fields = ['title', 'hook_text', 'content', 'head_image', 'file_upload', 'category']
+    form_class = PostForm
+    # fields = ['title', 'hook_text', 'content', 'head_image', 'file_upload', 'category']
 
     def form_valid(self, form):
         current_user = self.request.user
         
         if current_user.is_authenticated and (current_user.is_staff or current_user.is_superuser):
             form.instance.author = current_user
-            return super(PostCreate, self).form_valid(form)
+
+            response = super(PostCreate, self).form_valid(form)
+            tags_str = self.request.POST.get('tags_str')
+            # return super(PostCreate, self).form_valid(form)
+
+            if tags_str:
+                tags_str = tags_str.strip()
+
+                tags_str = tags_str.replace(',', ';')
+                tags_list = tags_str.split(';')
+
+                for t in tags_list:
+                    t = t.strip()
+                    tag, is_tag_created = Tag.objects.get_or_create(name=t)
+                    if is_tag_created:
+                        tag.slug = slugify(t, allow_unicode=True)
+                        tag.save()
+                    self.object.tags.add(tag)
+
+            return response
+
         else:
+            # return redirect('/blog/')
             return redirect('/blog/')
 
 class PostUpdate(LoginRequiredMixin, UpdateView):
