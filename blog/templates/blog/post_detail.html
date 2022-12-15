@@ -34,6 +34,13 @@
                     {% if p.hook_text %}
                     <h5 class="text_muted">{{ post.hook_text }}</h5>
                     {% endif %}
+
+                    {% if user.is_authenticated and user == post.author %}
+                    <a class="btn btn-warning btn-sm float-end" href="/blog/update_post/{{ post.pk }}/" role="button">
+                        <i class="fas fa-pen"></i>  Edit  Post
+                    </a>
+                    {% endif %}
+
                     <!-- Post meta content-->
                     <div class="text-muted fst-italic mb-2">{{ post.created_at }}</div>
                     <!-- Post categories-->

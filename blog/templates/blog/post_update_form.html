@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block style %}
+<link href="{% static 'css/my_styles.css' %}" rel="stylesheet" />
+{% endblock %}
+
+{% block head_title %}Edit Post - Blog{% endblock %}
+
+{% block main_area %}
+    <br>
+    <h1 style="margin-top: 100px;">Edit Post</h1>
+    <hr>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <table>
+            {{ form }}
+        </table>
+        <button type="submit" class="btn btn-primary float-right">Submit</button>
+    </form>
+{% endblock %}
