@@ -50,7 +50,7 @@ class PostUpdate(LoginRequiredMixin, UpdateView):
     def dispatch(self, request, *args, **kwargs):
         # 사용자가 로그인 상태이고 사용자가 포스트의 소유자인지
         if request.user.is_authenticated and request.user == self.get_object().author:
-            return super(PostUpate, self).dispatch(request, *args, **kwargs)
+            return super(PostUpdate, self).dispatch(request, *args, **kwargs)
         else:
             return PermissionDenied
 
