@@ -14,9 +14,11 @@
     <hr>
     <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
-        <table>
             {{ form | crispy }}
-        </table>
+        <div>
+            <label for="id_tag_str">Tags</label>
+            <input type="text" name="tags_str" id="id_tags_str" class="textInput form-control" value="{{ tags_str_default }}">
+        </div>
         <button type="submit" class="btn btn-primary float-right">Submit</button>
     </form>
 {% endblock %}

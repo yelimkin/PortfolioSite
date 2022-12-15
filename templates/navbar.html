@@ -1,4 +1,5 @@
 {% load static %}
+{% load socialaccount %}
 <!-- Navigation-->
 <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
     <div class="container">
@@ -8,16 +9,69 @@
             <i class="fas fa-bars ms-1"></i>
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
-            <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
+            <ul class="navbar-nav text-uppercase py-4 py-lg-0">
                 <li class="nav-item"><a class="nav-link" href="{% url 'home' %}#services">Services</a></li>
                 <li class="nav-item"><a class="nav-link" href="{% url 'home' %}#portfolio">Portfolio</a></li>
-                <li class="nav-item"><a class="nav-link" href="{% url 'home' %}#about">About</a></li>
-                <li class="nav-item"><a class="nav-link" href="{% url 'home' %}#team">Team</a></li>
+                <!-- <li class="nav-item"><a class="nav-link" href="{% url 'home' %}#about">About</a></li> -->
+                <!-- <li class="nav-item"><a class="nav-link" href="{% url 'home' %}#team">Team</a></li> -->
                 <li class="nav-item"><a class="nav-link" href="{% url 'home' %}#contact">Contact</a></li>
                 <li class="nav-item"><a class="nav-link" href="{% url 'blog:post_list' %}">BLOG</a></li>
                 <li class="nav-item"><a class="nav-link" href="{% url 'home' %}#">ML 배포</a></li>
                 <li class="nav-item"><a class="nav-link" href="{% url 'admin:index' %}" target="_blank">Admin</a></li>
             </ul>
+            <ul class="navbar-nav ml-auto">
+                {% if user.is_authenticated %}
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        {{ user.username }}
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" href="/accounts/logout/">
+                            Log Out
+                        </a>
+                    </div>
+                </li>
+                {% else %}
+                <li class="nav-item">
+                    <a class="nav-link" href="#" data-toggle="model" data-bs-target="#loginModal">
+                        Log in
+                    </a>
+                </li>
+                {% endif %}
+            </ul>
         </div>
+        <!-- <div class="float-end">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        Log in
+                    </a>
+                </li>
+                
+            </ul>
+        </div> -->
     </div>
 </nav>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="d-grid gap-2">
+                    <a role="button" href="{% provider_login_url 'google' %}" class="btn btn-outline-dark btn-block btn-sm"><i class="fab fa-google"></i>&nbsp&nbspLog in With Google</a>
+                    <a role="button" href="" class="btn btn-outline-dark btn-block btn-sm"><i class="far fa-envelope"></i>&nbsp&nbspLog in With Email</a>
+                    <a role="button" href="" class="btn btn-outline-dark btn-block btn-sm"><i class="far fa-envelope"></i>&nbsp&nbspSign up with Email</a>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>

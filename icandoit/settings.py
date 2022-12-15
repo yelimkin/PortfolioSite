@@ -42,6 +42,13 @@ INSTALLED_APPS = [
     'crispy_bootstrap5',
     'crispy_forms',
     'django_summernote',
+
+    # all-auth
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
 ]
 
 MIDDLEWARE = [
@@ -133,3 +140,17 @@ CRISPY_TEMPLATE_PACK = 'bootstrap5'
 CRISPY_ALLOWED_TEMPLATE_PACKS = 'bootstrap5'
 
 SUMMERNOTE_THEME = 'bs5'
+
+AUTHENTICATION_BACKENDS = (
+    # Needed to login by username in Django admin, regardless of `allauth`
+    'django.contrib.auth.backends.ModelBackend',
+
+    # `allauth` specific authentication methods, such as login by e-mail
+    'allauth.account.auth_backends.AuthenticationBackend',
+)
+
+SITE_ID = 1
+
+ACCOUNT_EMAIL_REQUIRED = True
+ACCIUNT_EMAIL_VERIFICATION = 'none'
+LOGIN_REDIRECT_URL = '/blog/'
