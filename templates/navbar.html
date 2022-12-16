@@ -19,10 +19,12 @@
                 <li class="nav-item"><a class="nav-link" href="{% url 'ml_deploy:iris_home' %}">ML 배포</a></li>
                 <li class="nav-item"><a class="nav-link" href="{% url 'admin:index' %}" target="_blank">Admin</a></li>
             </ul>
+        </div>
+        <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
             <ul class="navbar-nav ml-auto float-end">
                 {% if user.is_authenticated %}
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         {{ user.username }}
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
@@ -33,23 +35,13 @@
                 </li>
                 {% else %}
                 <li class="nav-item">
-                    <a class="nav-link" href="#" data-toggle="model" data-bs-target="#loginModal">
+                    <button class="nav-link" style="background-color: rgba(255, 255, 255, 0); border: none;" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">
                         Log in
-                    </a>
+                    </button>
                 </li>
                 {% endif %}
             </ul>
         </div>
-        <!-- <div class="float-end">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a class="nav-link" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                        Log in
-                    </a>
-                </li>
-                
-            </ul>
-        </div> -->
     </div>
 </nav>
 
@@ -64,8 +56,8 @@
             <div class="modal-body">
                 <div class="d-grid gap-2">
                     <a role="button" href="{% provider_login_url 'google' %}" class="btn btn-outline-dark btn-block btn-sm"><i class="fab fa-google"></i>&nbsp&nbspLog in With Google</a>
-                    <a role="button" href="" class="btn btn-outline-dark btn-block btn-sm"><i class="far fa-envelope"></i>&nbsp&nbspLog in With Email</a>
-                    <a role="button" href="" class="btn btn-outline-dark btn-block btn-sm"><i class="far fa-envelope"></i>&nbsp&nbspSign up with Email</a>
+                    <a role="button" href="/accounts/login/" class="btn btn-outline-dark btn-block btn-sm"><i class="far fa-envelope"></i>&nbsp&nbspLog in With Email</a>
+                    <a role="button" href="/accounts/signup/" class="btn btn-outline-dark btn-block btn-sm"><i class="far fa-envelope"></i>&nbsp&nbspSign up with Email</a>
                 </div>
             </div>
             <div class="modal-footer">
