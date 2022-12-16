@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'crispy_bootstrap5',
     'crispy_forms',
     'django_summernote',
+    'ml_deploy',
 
     # all-auth
     'django.contrib.sites',

@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block style%}
+    <link rel="stylesheet" href="{% static 'css/my_style.css' %}">
+{% endblock style %}
+
+{% block title %}
+    ML 배포
+{% endblock title %}
+
+{% block main_area %}
+<section class="container mt-6">
+    <div class="row p-4"  style="background-color:#a9e5f9;">
+        <div class="col-md-12 pt-5 tb-5 text-center">
+            {% if pred_result == 0 %}
+            <h1>PREDICTION : Iris-setosa</h1>  
+            <img src="{% static 'assets/img/ml_iris/setosa.jpg' %}">  
+
+            {% elif pred_result == 1 %}
+            <h1>PREDICTION : Iris-versicolor</h1>
+            <img src="{% static 'assets/img/ml_iris/versi.jpg' %}">
+
+            {% elif pred_result == 2 %}
+            <h1>PREDICTION : Iris-verginica</h1>
+            <img src="{% static 'assets/img/ml_iris/virginica.png' %}">
+
+            {% else %}
+            <h1>WARNING</h1>
+            <h2>{{ warning }}</h2>
+            <img src="{% static 'assets/img/ml_iris/warning.png' %}">
+            
+            {% endif %}
+
+                <br><br>
+            <a href="{% url 'ml_deploy:iris_home' %}">go back to home page</a>
+        </div>
+    </div>
+</section>
+{% endblock main_area %}

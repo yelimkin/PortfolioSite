@@ -16,10 +16,10 @@
                 <!-- <li class="nav-item"><a class="nav-link" href="{% url 'home' %}#team">Team</a></li> -->
                 <li class="nav-item"><a class="nav-link" href="{% url 'home' %}#contact">Contact</a></li>
                 <li class="nav-item"><a class="nav-link" href="{% url 'blog:post_list' %}">BLOG</a></li>
-                <li class="nav-item"><a class="nav-link" href="{% url 'home' %}#">ML 배포</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'ml_deploy:iris_home' %}">ML 배포</a></li>
                 <li class="nav-item"><a class="nav-link" href="{% url 'admin:index' %}" target="_blank">Admin</a></li>
             </ul>
-            <ul class="navbar-nav ml-auto">
+            <ul class="navbar-nav ml-auto float-end">
                 {% if user.is_authenticated %}
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

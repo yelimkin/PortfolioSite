@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block style%}
+    <link rel="stylesheet" href="{% static 'css/my_style.css' %}">
+{% endblock style %}
+
+{% block title %}
+    ML 예측
+{% endblock title %}
+
+{% block main_area %}
+<section class="container">
+    <div class="row p-5" style="background-color:#d686f5" >
+        <div class="col-md-12 text-center">
+            <h1> IRIS FLOWER DETECTION </h1><br>
+            <form method="POST", action="{% url 'ml_deploy:iris_predict' %}">
+                {% csrf_token %}
+            <b> First value :  <input type="text", name='a', placeholder="sepal length (cm)"> <br><br>
+                Second value :  <input type="text", name='b', placeholder="sepal width (cm)"> <br><br>
+                Third value :  <input type="text", name='c', placeholder="petal length (cm)"> <br><br>
+                Fourth value : <input type="text", name='d', placeholder="petal width (cm)"> <br><br><br></b>
+                <input type="submit" , value='predict' >
+            </form>
+            <div class="mt-2">
+                <img src="{% static 'assets/img/ml_iris/flower1.jpg' %}" alt="flower">
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock main_area %}
