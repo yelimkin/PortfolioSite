@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load crispy_forms_tags %}
 
 {% block style %}
 <link href="{% static 'css/my_styles.css' %}" rel="stylesheet" />
@@ -94,9 +95,19 @@
             <section class="mb-5">
                 <div class="card bg-light">
                     <div class="card-body">
+                        {% if user.is_authenticated %}
                         <!-- Comment form-->
-                        <form class="mb-4"><textarea class="form-control" rows="3" placeholder="Join the discussion and leave a comment!"></textarea></form>
-                        <!-- Comment with nested comments-->
+                        <form class="mb-4" id="comment-form" method="POST" action="{{ post.get_absolute_url }}new_comment/">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                {{ comment_form | crispy }}
+                            </div>
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </form>
+                        {% else %}
+                            <a href="#" role="button" class="btn btn-outline-dark btn-block btn-sm" data-bs-toggle="modal" data-bs-target="#loginModal">Log in and leave a comment</a>
+                        {% endif %}
+                            <!-- Comment with nested comments-->
                         <div class="d-flex mb-4">
                             <!-- Parent comment-->
                             <div class="flex-shrink-0"><img class="rounded-circle" src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..." /></div>
